@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="date" class="java.util.Date"/>   <!-- scope="prototype" -->
+	
+	<!-- Object Dependency..Student is dependent on Address -->
+	<bean id="address" class="com.pga.Spring_Core.Address">
+		<property name="city" value="Pune"/>
+		<property name="area" value="Dhankawadi"/>
+		<property name="pincode" value="411043"/>		
+	</bean>
+	
+	<!-- Constructor based Injection -->
+	<bean id="stud1" class="com.pga.Spring_Core.Student" init-method="myinit" destroy-method="mydestroy">
+		<constructor-arg value="11"/>
+		<constructor-arg value="Prashant"/>
+		<constructor-arg value="81.27f"/>
+		<constructor-arg ref="address"/>
+	</bean>
+	
+	<!-- Setter based Injection -->
+			<!-- lazy-init-> obj created only when required  -->
+	<bean id="stud2" class="com.pga.Spring_Core.Student" lazy-init="true">   
+		<property name="name" value="Mike Ross"/>
+		<property name="id" value="15"/>
+		<property name="marks" value="65.6f"/>
+<!-- 		<property name="addr" ref="address"/> -->
+	</bean>
+	
+	
+</beans>
